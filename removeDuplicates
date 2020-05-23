@@ -1,0 +1,35 @@
+public int removeDuplicates(int[] nums) {
+        int length = nums.length;
+        if(length ==0 || length == 1){
+            return length;
+        }
+        int left = 0;
+        int right = 1;
+        boolean allowRepeat = true;
+        while(right < length){
+            if(nums[left] != nums[right]){
+                allowRepeat = true;
+                if(right>left+1){
+                    nums[left+1] = nums[right];
+                }
+                left++;
+                right++;
+                continue;
+            }
+            if(nums[left] == nums[right]){
+                if(allowRepeat == true){
+                    if(right>left+1){
+                       nums[left+1] = nums[right];
+                    }
+                    left++;
+                    right++;
+                    allowRepeat = false;
+                    continue;
+                }else{
+                    right++;
+                    continue;
+                }
+            }
+        }
+        return left+1;
+    }
